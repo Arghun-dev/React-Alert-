@@ -44,6 +44,12 @@ for example I want to use this Alert component inside my Profile.js component:
 
 So I have to initialize a state called for example, formSubmitted inside my state to initialize the logic that when the onClick event called, then show Alert.
 
+Why We Do this ?
+
+**To prevent repeated setState and to prevent componentDidUpdate exceeds setState Error**
+
+**Notice that this is extremely important to do this, you have to do this with onClick function in form**
+
 And also, I have to initialize the initial States of Alert properties: showAlert, alertStatus, dashboardAlertHeading and alertText
 
 Profile.js
@@ -166,3 +172,5 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps)(Profile);
 ```
+
+Hope You enjoyed this!
