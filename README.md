@@ -183,7 +183,7 @@ Always remember to assing prevProps in componentDidUpdate
 
 ```js
 componentDidUpdate(prevProps) {
-    if (this.props.addUserMsg?.[0]?.MsgId === 0 && this.addUserAction && this.state.addUserActionCalled === true) {
+    if (this.props.addUserMsg?.[0]?.MsgId === 0 && this.state.addUserActionCalled === true) {
             if (prevProps.addUserMsg?.[0]?.MsgText !== this.props.addUserMsg?.[0]?.MsgText) {
                 this.setState({
                     showAlert: true,
@@ -204,7 +204,7 @@ componentDidUpdate(prevProps) {
             }
         }
 
-        if (this.props.addUserMsg?.[0]?.MsgId === -1 && this.addUserAction && this.state.addUserActionCalled === true) {
+        if (this.props.addUserMsg?.[0]?.MsgId === -1 && this.state.addUserActionCalled === true) {
             if (prevProps.addUserMsg?.[0]?.MsgText !== this.props.addUserMsg?.[0]?.MsgText) {
                 this.setState({
                     showAlert: true,
