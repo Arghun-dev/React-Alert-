@@ -183,46 +183,42 @@ Always remember to assing prevProps in componentDidUpdate
 
 ```js
 componentDidUpdate(prevProps) {
-    if (this.props.addUserMsg?.[0]?.MsgId === 0 && this.state.addUserActionCalled === true) {
-            if (prevProps.addUserMsg?.[0]?.MsgText !== this.props.addUserMsg?.[0]?.MsgText) {
-                this.setState({
-                    showAlert: true,
-                    alertStatus: 'success',
-                    alertText: this.props.addUserMsg[0].MsgText,
-                    dashboardAlertHeading: 'عملیات موفق',
-                    addUserActionCalled: false
-                })
+    if (this.props.addUserMsg?.[0]?.MsgId === 0 && this.state.addUserActionCalled === true && prevProps.addUserMsg?.[0]?.MsgText !== this.props.addUserMsg?.[0]?.MsgText) {
+            this.setState({
+                showAlert: true,
+                alertStatus: 'success',
+                alertText: this.props.addUserMsg[0].MsgText,
+                dashboardAlertHeading: 'عملیات موفق',
+                addUserActionCalled: false
+            })
 
-                setTimeout(() => {
-                    this.setState({
-                        showAlert: false,
-                        alertStatus: null,
-                        alertText: null,
-                        dashboardAlertHeading: null
-                    })
-                }, 5000)
-            }
+            setTimeout(() => {
+                this.setState({
+                    showAlert: false,
+                    alertStatus: null,
+                    alertText: null,
+                    dashboardAlertHeading: null
+                })
+            }, 5000)
         }
 
-        if (this.props.addUserMsg?.[0]?.MsgId === -1 && this.state.addUserActionCalled === true) {
-            if (prevProps.addUserMsg?.[0]?.MsgText !== this.props.addUserMsg?.[0]?.MsgText) {
-                this.setState({
-                    showAlert: true,
-                    alertStatus: 'danger',
-                    alertText: this.props.addUserMsg[0].MsgText,
-                    dashboardAlertHeading: 'عملیات ناموفق',
-                    addUserActionCalled: false
-                })
+        if (this.props.addUserMsg?.[0]?.MsgId === -1 && this.state.addUserActionCalled === true && prevProps.addUserMsg?.[0]?.MsgText !== this.props.addUserMsg?.[0]?.MsgText) {
+            this.setState({
+                showAlert: true,
+                alertStatus: 'danger',
+                alertText: this.props.addUserMsg[0].MsgText,
+                dashboardAlertHeading: 'عملیات ناموفق',
+                addUserActionCalled: false
+            })
 
-                setTimeout(() => {
-                    this.setState({
-                        showAlert: false,
-                        alertStatus: null,
-                        alertText: null,
-                        dashboardAlertHeading: null
-                    })
-                }, 5000)
-            }
+            setTimeout(() => {
+                this.setState({
+                    showAlert: false,
+                    alertStatus: null,
+                    alertText: null,
+                    dashboardAlertHeading: null
+                })
+            }, 5000)
         }
   }
 ```
