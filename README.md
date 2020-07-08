@@ -173,4 +173,60 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps)(Profile);
 ```
 
+### Last Point
+
+Another very important point that you have to notice:
+
+وقتی دفعه اول یه یوزر اضافه میکردم مثلا یوزر با نام کاربری ارغون به لیت اضافه شد. بعد میرفتم یه یوزر دیگه با نام کاربری سهند اضافه میکردم الرتم باز نشون میداد یوزر با نام کاربری ارغون اضافه شد. پس باید یه کاری میکردم که این اتفاق نیفته. چیکار کردم؟
+
+Always remember to assing prevProps in componentDidUpdate
+
+```js
+componentDidUpdate(prevProps) {
+    if (this.props.addUserMsg?.[0]?.MsgId === 0 && this.addUserAction && this.state.addUserActionCalled === true) {
+            if (prevProps.addUserMsg?.[0]?.MsgText !== this.props.addUserMsg?.[0]?.MsgText) {
+                this.setState({
+                    showAlert: true,
+                    alertStatus: 'success',
+                    alertText: this.props.addUserMsg[0].MsgText,
+                    dashboardAlertHeading: 'عملیات موفق',
+                    addUserActionCalled: false
+                })
+
+                setTimeout(() => {
+                    this.setState({
+                        showAlert: false,
+                        alertStatus: null,
+                        alertText: null,
+                        dashboardAlertHeading: null
+                    })
+                }, 5000)
+            }
+        }
+
+        if (this.props.addUserMsg?.[0]?.MsgId === -1 && this.addUserAction && this.state.addUserActionCalled === true) {
+            if (prevProps.addUserMsg?.[0]?.MsgText !== this.props.addUserMsg?.[0]?.MsgText) {
+                this.setState({
+                    showAlert: true,
+                    alertStatus: 'danger',
+                    alertText: this.props.addUserMsg[0].MsgText,
+                    dashboardAlertHeading: 'عملیات ناموفق',
+                    addUserActionCalled: false
+                })
+
+                setTimeout(() => {
+                    this.setState({
+                        showAlert: false,
+                        alertStatus: null,
+                        alertText: null,
+                        dashboardAlertHeading: null
+                    })
+                }, 5000)
+            }
+        }
+  }
+```
+
+I had to use prevProps to compare the prevProp to current prop
+
 Hope You enjoyed this!
